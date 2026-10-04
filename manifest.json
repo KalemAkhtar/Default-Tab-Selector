@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Default Tab Selector for Power Apps Maker Portal",
+  "version": "1.0.0",
+  "minimum_chrome_version": "111",
+  "description": "Choose which tab Power Apps maker portal pages open on. Runs only on make.powerapps.com, with choices saved in your browser.",
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "96": "icons/icon96.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://make.powerapps.com/*"],
+      "js": ["src/content/main-world-bridge.ts"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://make.powerapps.com/*"],
+      "js": ["src/content/content-script.ts"],
+      "run_at": "document_start"
+    }
+  ]
+}
